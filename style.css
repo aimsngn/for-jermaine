@@ -1,26 +1,37 @@
+/* === Base === */
 body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
   background-color: #f7d9da;
   font-family: 'Georgia', serif;
 }
 
+/* === Envelope Container === */
 .envlope-wrapper {
-  height: 380px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* === Envelope === */
 #envelope {
-  margin: 150px;
   position: relative;
   width: 280px;
   height: 180px;
+  background-color: #f9c5c8;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
-  margin-left: auto;
-  margin-right: auto;
-  top: 150px;
-  background-color: #f9c5c8;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
+/* === Envelope Parts === */
 .front {
   position: absolute;
   width: 0;
@@ -46,36 +57,34 @@ body {
   border-bottom-right-radius: 6px;
 }
 
+/* === Letter === */
 .letter {
   position: relative;
   background-color: #f9c5c8;
   width: 90%;
-  margin: 0 auto;
   height: 180%;
-  top: 5%;
+  top: 0;
+  margin: 0 auto;
   border-radius: 6px;
   box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
   transition: transform 0.4s ease;
+  overflow: hidden;
+  z-index: 2;
 }
 
 .letter-content {
   overflow-y: auto;
-  max-height: 250px; /* adjust based on how far the letter pulls out */
+  max-height: 250px;
   overflow-wrap: break-word;
   padding: 20px;
   font-size: 16px;
+  -webkit-overflow-scrolling: touch;
+  visibility: hidden;
 }
 
-
-/*.letter:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 25%, rgba(239, 215, 239, 0.7) 55%, #eed7ef 100%);
-} */
+.open .letter-content {
+  visibility: visible;
+}
 
 .open .flap {
   transform: rotateX(180deg);
@@ -91,29 +100,13 @@ body {
 
 .open .letter {
   transform: translateY(-220px);
-  z-index: 2;
 }
 
 .close .letter {
   transform: translateY(0px);
-  z-index: 1;
 }
 
-.close .letter-content {
-  visibility: hidden;
-}
-.open .letter-content {
-  visibility: visible;
-}
-
-
-.open {
-  overflow: visible;
-}
-.close {
-  overflow: hidden;
-}
-
+/* === Heart Animations === */
 .hearts {
   position: absolute;
   top: 90px;
@@ -143,6 +136,7 @@ body {
   transform-origin: 0 100%;
   pointer-events: none;
 }
+
 .heart:after {
   left: 0;
   transform: rotate(45deg);
@@ -183,14 +177,18 @@ body {
   0% { top: 0; }
   100% { top: -600px; }
 }
+
 @keyframes sideSway {
   0% { margin-left: 0px; }
   100% { margin-left: 50px; }
 }
 
+/* === Buttons === */
 .reset {
   text-align: center;
+  margin-top: 20px;
 }
+
 .reset button {
   font-weight: 800;
   background-color: transparent;
@@ -204,7 +202,34 @@ body {
   min-width: 120px;
   cursor: pointer;
 }
+
 .reset button:hover {
   background-color: #fc9d9d;
   color: #a10000;
+}
+
+/* === Responsive for Safari Mobile === */
+@media (max-width: 480px) {
+  #envelope {
+    width: 240px;
+    height: 160px;
+  }
+
+  .flap {
+    border-left: 120px solid transparent;
+    border-right: 120px solid transparent;
+    border-bottom: 70px solid transparent;
+    border-top: 90px solid #ff3333;
+  }
+
+  .pocket {
+    border-left: 120px solid #ff9999;
+    border-right: 120px solid #ff9999;
+    border-bottom: 80px solid #fd8787;
+    border-top: 80px solid transparent;
+  }
+
+  .letter {
+    width: 95%;
+  }
 }
