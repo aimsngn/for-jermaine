@@ -1,12 +1,14 @@
-/* === Base === */
-body {
+/* === Base Fix for Mobile Safari === */
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
+  -webkit-text-size-adjust: 100%;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
   background-color: #f7d9da;
   font-family: 'Georgia', serif;
 }
@@ -62,7 +64,7 @@ body {
   position: relative;
   background-color: #f9c5c8;
   width: 90%;
-  height: 180%;
+  max-height: 300px;
   top: 0;
   margin: 0 auto;
   border-radius: 6px;
@@ -70,22 +72,27 @@ body {
   transition: transform 0.4s ease;
   overflow: hidden;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Scrollable Letter Content */
 .letter-content {
+  flex: 1;
   overflow-y: auto;
-  max-height: 250px;
-  overflow-wrap: break-word;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   padding: 20px;
   font-size: 16px;
-  -webkit-overflow-scrolling: touch;
   visibility: hidden;
+  box-sizing: border-box;
 }
 
 .open .letter-content {
   visibility: visible;
 }
 
+/* === Open/Close Envelope Animation === */
 .open .flap {
   transform: rotateX(180deg);
   transition: transform 0.4s ease, z-index 0.6s;
@@ -208,7 +215,7 @@ body {
   color: #a10000;
 }
 
-/* === Responsive for Safari Mobile === */
+/* === Responsive for Safari iPhones === */
 @media (max-width: 480px) {
   #envelope {
     width: 240px;
@@ -231,5 +238,6 @@ body {
 
   .letter {
     width: 95%;
+    max-height: 240px;
   }
 }
