@@ -1,20 +1,23 @@
-body {
-  background-color: #f7d9da;
-  font-family: 'Georgia', serif;
+html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background-color: #f7d9da;
+  font-family: 'Georgia', serif;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
-  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 100px; /* ensures letter won't be cut off */
 }
 
-#envelopeWrapper {
-  margin-top: 100px;
+.envlope-wrapper {
+  width: 100%;
   display: flex;
   justify-content: center;
-  width: 100%;
 }
 
 #envelope {
@@ -22,9 +25,10 @@ body {
   width: 90vw;
   max-width: 280px;
   height: 180px;
+  margin-top: 50px;
+  background-color: #f9c5c8;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
-  background-color: #f9c5c8;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -36,21 +40,32 @@ body {
 }
 
 .flap {
+  position: absolute;
+  top: -98px;
+  left: 0;
+  width: 0;
+  height: 0;
   border-left: 140px solid transparent;
   border-right: 140px solid transparent;
-  border-bottom: 82px solid transparent;
   border-top: 98px solid #ff3333;
-  transform-origin: top;
   pointer-events: none;
+  transform-origin: top;
+  z-index: 4;
 }
 
 .pocket {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
   border-left: 140px solid #ff9999;
   border-right: 140px solid #ff9999;
   border-bottom: 90px solid #fd8787;
   border-top: 90px solid transparent;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
+  z-index: 2;
 }
 
 .letter {
@@ -64,7 +79,7 @@ body {
   box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
   transition: transform 0.4s ease;
   overflow: hidden;
-  z-index: 2;
+  z-index: 1;
 }
 
 .letter-content {
@@ -75,7 +90,6 @@ body {
   padding: 20px;
   font-size: 16px;
   word-break: break-word;
-  -webkit-overflow-scrolling: touch;
   visibility: hidden;
 }
 
@@ -85,13 +99,13 @@ body {
 
 .open .flap {
   transform: rotateX(180deg);
-  transition: transform 0.4s ease, z-index 0.6s;
+  transition: transform 0.4s ease;
   z-index: 1;
 }
 
 .close .flap {
   transform: rotateX(0deg);
-  transition: transform 0.4s 0.6s ease, z-index 1s;
+  transition: transform 0.4s 0.6s ease;
   z-index: 5;
 }
 
@@ -112,80 +126,11 @@ body {
   overflow: hidden;
 }
 
-.hearts {
-  position: absolute;
-  top: 90px;
-  left: 0;
-  right: 0;
-  z-index: 2;
-}
-
-.heart {
-  position: absolute;
-  bottom: 0;
-  right: 10%;
-  pointer-events: none;
-}
-
-.heart:before,
-.heart:after {
-  position: absolute;
-  content: "";
-  left: 50px;
-  top: 0;
-  width: 50px;
-  height: 80px;
-  background: #D00000;
-  border-radius: 50px 50px 0 0;
-  transform: rotate(-45deg);
-  transform-origin: 0 100%;
-}
-
-.heart:after {
-  left: 0;
-  transform: rotate(45deg);
-  transform-origin: 100% 100%;
-}
-
-.close .heart {
-  opacity: 0;
-  animation: none;
-}
-
-.a1, .a2, .a3 {
-  opacity: 1;
-  animation-fill-mode: forwards;
-  animation-delay: 0.7s;
-}
-.a1 {
-  left: 20%;
-  transform: scale(0.6);
-  animation: slideUp 4s linear 1, sideSway 2s ease-in-out 4 alternate;
-}
-.a2 {
-  left: 55%;
-  transform: scale(1);
-  animation: slideUp 5s linear 1, sideSway 4s ease-in-out 2 alternate;
-}
-.a3 {
-  left: 10%;
-  transform: scale(0.8);
-  animation: slideUp 7s linear 1, sideSway 2s ease-in-out 6 alternate;
-}
-
-@keyframes slideUp {
-  0% { top: 0; }
-  100% { top: -600px; }
-}
-@keyframes sideSway {
-  0% { margin-left: 0px; }
-  100% { margin-left: 50px; }
-}
-
 .reset {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 30px;
 }
+
 .reset button {
   font-weight: 800;
   background-color: transparent;
@@ -199,24 +144,30 @@ body {
   min-width: 120px;
   cursor: pointer;
 }
+
 .reset button:hover {
   background-color: #fc9d9d;
   color: #a10000;
 }
 
-/* Mobile responsiveness */
 @media (max-width: 600px) {
-  #envelope {
-    width: 90vw;
-    height: 180px;
-    margin-top: 40px;
-  }
   .letter {
-    height: 280px;
+    height: 300px;
   }
+
+  .open .letter {
+    transform: translateY(-200px);
+  }
+
   .letter-content {
     font-size: 15px;
     padding: 15px;
+  }
+
+  .reset button {
+    padding: 8px;
+    font-size: 13px;
+    min-width: 100px;
   }
 }
 
