@@ -47,19 +47,20 @@ body {
 }
 
 .letter {
+  height: 240px;
   position: relative;
   background-color: #f9c5c8;
   width: 90%;
   margin: 0 auto;
-  height: 180%;
   top: 5%;
   border-radius: 6px;
   box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
   transition: transform 0.4s ease;
 }
 
+
 .letter-content {
-  max-height: 200px;
+  height: 200px;
   overflow-y: auto;
   overflow-wrap: break-word;
   padding: 20px;
