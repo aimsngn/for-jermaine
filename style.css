@@ -59,12 +59,14 @@ body {
 }
 
 .letter-content {
+  max-height: 200px;
   overflow-y: auto;
-  max-height: 250px; /* adjust based on how far the letter pulls out */
   overflow-wrap: break-word;
   padding: 20px;
   font-size: 16px;
+  visibility: visible;
 }
+
 
 
 /*.letter:after {
