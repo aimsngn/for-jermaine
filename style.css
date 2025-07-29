@@ -30,7 +30,8 @@ html, body {
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
+  overflow: visible; /* ✅ allow letter to extend upward */
+  z-index: 1;
 }
 
 /* === Envelope Parts === */
@@ -48,6 +49,7 @@ html, body {
   border-top: 98px solid #ff3333;
   transform-origin: top;
   pointer-events: none;
+  z-index: 6;
 }
 
 .pocket {
@@ -71,12 +73,11 @@ html, body {
   box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
   transition: transform 0.4s ease;
   overflow: hidden;
-  z-index: 2;
   display: flex;
   flex-direction: column;
+  z-index: 10; /* ✅ sits above flap */
 }
 
-/* Scrollable Letter Content */
 .letter-content {
   flex: 1;
   overflow-y: auto;
@@ -96,13 +97,13 @@ html, body {
 .open .flap {
   transform: rotateX(180deg);
   transition: transform 0.4s ease, z-index 0.6s;
-  z-index: 1;
+  z-index: 5; /* ✅ flap goes behind letter */
 }
 
 .close .flap {
   transform: rotateX(0deg);
   transition: transform 0.4s 0.6s ease, z-index 1s;
-  z-index: 5;
+  z-index: 6;
 }
 
 .open .letter {
@@ -241,3 +242,4 @@ html, body {
     max-height: 240px;
   }
 }
+
