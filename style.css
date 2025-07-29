@@ -51,7 +51,7 @@ body {
   background-color: #f9c5c8;
   width: 90%;
   margin: 0 auto;
-  height: 150%;
+  height: 180%;
   top: 5%;
   border-radius: 6px;
   box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
@@ -59,11 +59,13 @@ body {
 }
 
 .letter-content {
+  overflow-y: auto;
+  max-height: 250px; /* adjust based on how far the letter pulls out */
+  overflow-wrap: break-word;
   padding: 20px;
   font-size: 16px;
-  color: #444;
-  white-space: pre-wrap;
 }
+
 
 /*.letter:after {
   content: "";
@@ -96,6 +98,14 @@ body {
   transform: translateY(0px);
   z-index: 1;
 }
+
+.close .letter-content {
+  visibility: hidden;
+}
+.open .letter-content {
+  visibility: visible;
+}
+
 
 .open {
   overflow: visible;
