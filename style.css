@@ -1,4 +1,3 @@
-/* === Base Fix for Mobile Safari === */
 html, body {
   height: 100%;
   margin: 0;
@@ -13,9 +12,9 @@ html, body {
   font-family: 'Georgia', serif;
 }
 
-/* === Envelope Container === */
 .envlope-wrapper {
   width: 100%;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,11 +29,10 @@ html, body {
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  overflow: visible; /* ✅ allow letter to extend upward */
+  overflow: visible;
   z-index: 1;
 }
 
-/* === Envelope Parts === */
 .front {
   position: absolute;
   width: 0;
@@ -49,7 +47,7 @@ html, body {
   border-top: 98px solid #ff3333;
   transform-origin: top;
   pointer-events: none;
-  z-index: 6;
+  z-index: 5;
 }
 
 .pocket {
@@ -61,60 +59,40 @@ html, body {
   border-bottom-right-radius: 6px;
 }
 
-/* === Letter === */
+/* === Letter Outside Envelope === */
 .letter {
-  position: relative;
-  background-color: #f9c5c8;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
   width: 90%;
   max-height: 300px;
-  top: 0;
-  margin: 0 auto;
+  background-color: #f9c5c8;
   border-radius: 6px;
   box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
-  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, visibility 0s;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  z-index: 10; /* ✅ sits above flap */
+  z-index: 10;
+  visibility: hidden;
+}
+
+.open ~ .letter {
+  transform: translate(-50%, -220px);
+  visibility: visible;
 }
 
 .letter-content {
   flex: 1;
   overflow-y: auto;
-  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   padding: 20px;
   font-size: 16px;
-  visibility: hidden;
   box-sizing: border-box;
 }
 
-.open .letter-content {
-  visibility: visible;
-}
-
-/* === Open/Close Envelope Animation === */
-.open .flap {
-  transform: rotateX(180deg);
-  transition: transform 0.4s ease, z-index 0.6s;
-  z-index: 5; /* ✅ flap goes behind letter */
-}
-
-.close .flap {
-  transform: rotateX(0deg);
-  transition: transform 0.4s 0.6s ease, z-index 1s;
-  z-index: 6;
-}
-
-.open .letter {
-  transform: translateY(-220px);
-}
-
-.close .letter {
-  transform: translateY(0px);
-}
-
-/* === Heart Animations === */
+/* === Heart Animation === */
 .hearts {
   position: absolute;
   top: 90px;
@@ -132,17 +110,19 @@ html, body {
 
 .heart:before,
 .heart:after {
-  position: absolute;
   content: "";
-  left: 50px;
+  position: absolute;
   top: 0;
   width: 50px;
   height: 80px;
   background: #D00000;
   border-radius: 50px 50px 0 0;
+}
+
+.heart:before {
+  left: 50px;
   transform: rotate(-45deg);
   transform-origin: 0 100%;
-  pointer-events: none;
 }
 
 .heart:after {
@@ -161,7 +141,6 @@ html, body {
   transform: scale(0.6);
   opacity: 1;
   animation: slideUp 4s linear 1, sideSway 2s ease-in-out 4 alternate;
-  animation-fill-mode: forwards;
   animation-delay: 0.7s;
 }
 .a2 {
@@ -169,7 +148,6 @@ html, body {
   transform: scale(1);
   opacity: 1;
   animation: slideUp 5s linear 1, sideSway 4s ease-in-out 2 alternate;
-  animation-fill-mode: forwards;
   animation-delay: 0.7s;
 }
 .a3 {
@@ -177,7 +155,6 @@ html, body {
   transform: scale(0.8);
   opacity: 1;
   animation: slideUp 7s linear 1, sideSway 2s ease-in-out 6 alternate;
-  animation-fill-mode: forwards;
   animation-delay: 0.7s;
 }
 
@@ -185,7 +162,6 @@ html, body {
   0% { top: 0; }
   100% { top: -600px; }
 }
-
 @keyframes sideSway {
   0% { margin-left: 0px; }
   100% { margin-left: 50px; }
@@ -216,7 +192,7 @@ html, body {
   color: #a10000;
 }
 
-/* === Responsive for Safari iPhones === */
+/* === Responsive === */
 @media (max-width: 480px) {
   #envelope {
     width: 240px;
@@ -242,4 +218,3 @@ html, body {
     max-height: 240px;
   }
 }
-
