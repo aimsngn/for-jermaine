@@ -205,3 +205,44 @@ body {
   background-color: #fc9d9d;
   color: #a10000;
 }
+
+@media (max-width: 600px) {
+  body {
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 40px;
+  }
+
+  #envelope {
+    width: 90vw;
+    margin: 0 auto;
+    top: 0;
+  }
+
+  .letter {
+    height: 300px;
+    transform: none;
+  }
+
+  .open .letter {
+    transform: translateY(-200px);
+  }
+
+  .letter-content {
+    font-size: 15px;
+    max-height: 250px;
+    padding: 15px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .reset {
+    margin-top: 30px;
+  }
+
+  .reset button {
+    padding: 8px;
+    font-size: 13px;
+    min-width: 100px;
+  }
+}
