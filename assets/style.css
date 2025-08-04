@@ -175,7 +175,7 @@ main {
 /* Button styles */
 .nav-buttons li a {
   display: inline-block; /* Button box */
-  padding: 12px 20px; /* Smaller padding */
+  padding: 15px 25px; /* Smaller padding */
   border-radius: 12px; /* Rounded corners */
   background: #006d2c; /* Button green */
   color: white; /* White text */
@@ -197,7 +197,7 @@ main {
 
   .nav-buttons li a {
     padding: 10px 16px; /* Smaller padding */
-    font-size: 0.85rem; /* Smaller text */
+    font-size: 0.90rem; /* Smaller text */
   }
 }
 
