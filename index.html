@@ -2,32 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  
-  <link rel="stylesheet" href="style.css">
+  <title>Home | Friendgroup Site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <div class="envlope-wrapper">
-    <div id="envelope" class="close">
-      <div class="front flap"></div>
-      <div class="front pocket"></div>
-      <div class="letter">
-        <div class="letter-content">
-          This is for our friendgroup<br><br><br><br>
+
+  <!-- 🔗 Navigation -->
+  <header>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dump.html">🧠 Dump</a></li>
+        <li><a href="blendify.html">🎧 Blendify</a></li>
+        <li><a href="gallery.html">📸 Gallery</a></li>
+        <li><a href="bucketlist.html">📍 Bucketlist</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 💌 Envelope Section -->
+  <main>
+    <div class="envlope-wrapper">
+      <div id="envelope" class="close">
+        <div class="front flap"></div>
+        <div class="front pocket"></div>
+        <div class="letter">
+          <div class="letter-content">
+            For my ogs, <br><br>
+            I made us a website to blend our music tastes, track all the things we want to do, share random thoughts and photos, and keep a gallery of our favorite memories!
+          </div>
+        </div>
+        <div class="hearts">
+          <div class="heart a1"></div>
+          <div class="heart a2"></div>
+          <div class="heart a3"></div>
         </div>
       </div>
-      <div class="hearts">
-        <div class="heart a1"></div>
-        <div class="heart a2"></div>
-        <div class="heart a3"></div>
-      </div>
     </div>
-  </div>
-  <div class="reset">
-    <button id="open">Open</button>
-    <button id="reset">Reset</button>
-  </div>
+    <div class="reset">
+      <button id="open">Open</button>
+      <button id="reset">Reset</button>
+    </div>
+  </main>
 
+  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="script.js"></script>
+  <script src="assets/script.js"></script>
 </body>
 </html>
