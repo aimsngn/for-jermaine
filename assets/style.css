@@ -1,6 +1,22 @@
-body {
-  background-color: #f7d9da;
+/* === assets/style.css (Merged with your current envelope styling) === */
+
+body, html {
+  margin: 0;
+  padding: 0;
   font-family: 'Georgia', serif;
+  background-color: #f7d9da;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .envlope-wrapper {
@@ -8,14 +24,12 @@ body {
 }
 
 #envelope {
-  margin: 150px;
+  margin: 150px auto;
   position: relative;
   width: 280px;
   height: 180px;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
-  margin-left: auto;
-  margin-right: auto;
   top: 150px;
   background-color: #f9c5c8;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -60,22 +74,12 @@ body {
 
 .letter-content {
   overflow-y: auto;
-  max-height: 250px; /* adjust based on how far the letter pulls out */
+  max-height: 250px;
   overflow-wrap: break-word;
   padding: 20px;
   font-size: 16px;
+  visibility: hidden;
 }
-
-
-/*.letter:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 25%, rgba(239, 215, 239, 0.7) 55%, #eed7ef 100%);
-} */
 
 .open .flap {
   transform: rotateX(180deg);
@@ -99,17 +103,14 @@ body {
   z-index: 1;
 }
 
-.close .letter-content {
-  visibility: hidden;
-}
 .open .letter-content {
   visibility: visible;
 }
 
-
 .open {
   overflow: visible;
 }
+
 .close {
   overflow: hidden;
 }
@@ -143,6 +144,7 @@ body {
   transform-origin: 0 100%;
   pointer-events: none;
 }
+
 .heart:after {
   left: 0;
   transform: rotate(45deg);
@@ -162,6 +164,7 @@ body {
   animation-fill-mode: forwards;
   animation-delay: 0.7s;
 }
+
 .a2 {
   left: 55%;
   transform: scale(1);
@@ -170,6 +173,7 @@ body {
   animation-fill-mode: forwards;
   animation-delay: 0.7s;
 }
+
 .a3 {
   left: 10%;
   transform: scale(0.8);
@@ -183,6 +187,7 @@ body {
   0% { top: 0; }
   100% { top: -600px; }
 }
+
 @keyframes sideSway {
   0% { margin-left: 0px; }
   100% { margin-left: 50px; }
@@ -191,6 +196,7 @@ body {
 .reset {
   text-align: center;
 }
+
 .reset button {
   font-weight: 800;
   background-color: transparent;
@@ -204,7 +210,66 @@ body {
   min-width: 120px;
   cursor: pointer;
 }
+
 .reset button:hover {
   background-color: #fc9d9d;
   color: #a10000;
+}
+
+.scroll-hint {
+  margin-top: 30px;
+  font-size: 1.2rem;
+  color: #888;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.nav-section {
+  background: #fff0f3;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.nav-section h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.nav-buttons {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.nav-buttons li a {
+  display: inline-block;
+  padding: 15px 25px;
+  border-radius: 12px;
+  background: #ffb6b9;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.nav-buttons li a:hover {
+  background: #ff9299;
+}
+
+@media (max-width: 600px) {
+  .letter-content {
+    font-size: 14px;
+  }
+
+  .nav-buttons li a {
+    padding: 12px 18px;
+    font-size: 0.9rem;
+  }
 }
