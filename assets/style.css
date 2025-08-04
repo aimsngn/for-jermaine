@@ -1,275 +1,237 @@
-/* === assets/style.css (Merged with your current envelope styling) === */
+/* === assets/style.css (Tighter Layout + Comments) === */
 
+/* Base styles for page layout */
 body, html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Georgia', serif;
-  background-color: #f7d9da;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+  margin: 0; /* Removes default margin */
+  padding: 0; /* Removes default padding */
+  font-family: 'Quicksand', sans-serif;
+
+  background-color: #e5f5e0; /* Soft green background */
+  overflow-x: hidden; /* Prevents horizontal scroll */
+  scroll-behavior: smooth; /* Enables smooth scrolling */
+  position: relative; /* Needed for leaf decoration positioning */
 }
 
-section {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+/* Main container to center content vertically */
+main {
+  display: flex; /* Flexbox layout */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  min-height: 100vh; /* Full screen height */
+  gap: 20x; /* Tighter vertical spacing */
+  text-align: center; /* Center text */
+  padding: 20px 20px; /* Reduced spacing inside */
 }
 
+/* Wrapper for the envelope to control height */
 .envlope-wrapper {
-  height: 380px;
+  height: 200; /* Smaller fixed height */
+  margin: 0 auto; /* Center horizontally */
 }
 
+/* Envelope body container */
 #envelope {
-  margin: 150px auto;
-  position: relative;
-  width: 280px;
-  height: 180px;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
-  top: 150px;
-  background-color: #f9c5c8;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative; /* For absolute children */
+  width: 260px; /* Reduced width */
+  height: 160px; /* Reduced height */
+  border-bottom-left-radius: 6px; /* Rounded corner */
+  border-bottom-right-radius: 6px; /* Rounded corner */
+  background-color: #a3cfb5; /* Envelope base color */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  cursor: pointer; /* Clickable */
+  margin: 0 auto; /* Centered */
 }
 
+/* Invisible base for flap/pocket positioning */
 .front {
-  position: absolute;
-  width: 0;
-  height: 0;
-  z-index: 3;
+  position: absolute; /* Positioned within envelope */
+  width: 0; /* Triangle setup */
+  height: 0; /* Triangle setup */
+  z-index: 3; /* Above letter */
 }
 
+/* Triangle flap style */
 .flap {
-  border-left: 140px solid transparent;
-  border-right: 140px solid transparent;
-  border-bottom: 82px solid transparent;
-  border-top: 98px solid #ff3333;
-  transform-origin: top;
-  pointer-events: none;
+  border-left: 130px solid transparent; /* Left triangle */
+  border-right: 130px solid transparent; /* Right triangle */
+  border-bottom: 72px solid transparent; /* Bottom invisible */
+  border-top: 88px solid #4b8b60; /* Top visible flap */
+  transform-origin: top; /* Rotation point */
+  pointer-events: none; /* Not clickable */
 }
 
+/* Triangle pocket style */
 .pocket {
-  border-left: 140px solid #ff9999;
-  border-right: 140px solid #ff9999;
-  border-bottom: 90px solid #fd8787;
-  border-top: 90px solid transparent;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
+  border-left: 130px solid #81b38b; /* Left part */
+  border-right: 130px solid #81b38b; /* Right part */
+  border-bottom: 80px solid #6ca376; /* Bottom visible */
+  border-top: 80px solid transparent; /* Top invisible */
+  border-bottom-left-radius: 6px; /* Rounded corners */
+  border-bottom-right-radius: 6px; /* Rounded corners */
 }
 
+/* Letter inside the envelope */
 .letter {
-  position: relative;
-  background-color: #f9c5c8;
-  width: 90%;
-  margin: 0 auto;
-  height: 180%;
-  top: 5%;
-  border-radius: 6px;
-  box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
-  transition: transform 0.4s ease;
+  position: relative; /* Inside envelope */
+  background-color: #cce9d9; /* Light green paper */
+  width: 90%; /* Width within envelope */
+  margin: 0 auto; /* Centered */
+  height: 160%; /* Slightly taller than envelope */
+  top: 3%; /* Shift down */
+  border-radius: 6px; /* Rounded edges */
+  box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12); /* Paper shadow */
+  transition: transform 0.4s ease; /* Slide animation */
 }
 
+/* Content inside the letter */
 .letter-content {
-  overflow-y: auto;
-  max-height: 250px;
-  overflow-wrap: break-word;
-  padding: 20px;
-  font-size: 16px;
-  visibility: hidden;
+  overflow-y: auto; /* Scroll if too long */
+  max-height: 200px; /* Max view height */
+  overflow-wrap: break-word; /* Wrap long words */
+  padding: 20px; /* Space inside */
+  font-size: 16px; /* Text size */
+  visibility: hidden; /* Hidden when closed */
 }
 
+/* Flap flips open */
 .open .flap {
-  transform: rotateX(180deg);
-  transition: transform 0.4s ease, z-index 0.6s;
-  z-index: 1;
+  transform: rotateX(180deg); /* Flip animation */
+  transition: transform 0.4s ease, z-index 0.6s; /* Smooth */
+  z-index: 1; /* Behind letter */
 }
 
+/* Flap flips closed */
 .close .flap {
-  transform: rotateX(0deg);
-  transition: transform 0.4s 0.6s ease, z-index 1s;
-  z-index: 5;
+  transform: rotateX(0deg); /* Flat position */
+  transition: transform 0.4s 0.6s ease, z-index 1s; /* Delay for realism */
+  z-index: 5; /* In front */
 }
 
+/* Slide letter out */
 .open .letter {
-  transform: translateY(-220px);
-  z-index: 2;
+  transform: translateY(-180px); /* Pull up */
+  z-index: 2; /* Above flap */
 }
 
+/* Keep letter inside */
 .close .letter {
-  transform: translateY(0px);
-  z-index: 1;
+  transform: translateY(0px); /* Stay in place */
+  z-index: 1; /* Default */
 }
 
+/* Show content when open */
 .open .letter-content {
-  visibility: visible;
+  visibility: visible; /* Make visible */
 }
 
+/* Utility classes for logic */
 .open {
-  overflow: visible;
+  overflow: visible; /* Allow pull */
 }
 
 .close {
-  overflow: hidden;
+  overflow: hidden; /* Clip letter */
 }
 
+/* Heart container (not used) */
 .hearts {
-  position: absolute;
+  position: absolute; /* Inside envelope */
   top: 90px;
   left: 0;
   right: 0;
   z-index: 2;
 }
 
+/* Hides heart visuals */
 .heart {
-  position: absolute;
-  bottom: 0;
-  right: 10%;
-  pointer-events: none;
+  display: none;
 }
 
-.heart:before,
-.heart:after {
-  position: absolute;
-  content: "";
-  left: 50px;
-  top: 0;
-  width: 50px;
-  height: 80px;
-  background: #D00000;
-  border-radius: 50px 50px 0 0;
-  transform: rotate(-45deg);
-  transform-origin: 0 100%;
-  pointer-events: none;
-}
-
-.heart:after {
-  left: 0;
-  transform: rotate(45deg);
-  transform-origin: 100% 100%;
-}
-
-.close .heart {
-  opacity: 0;
-  animation: none;
-}
-
-.a1 {
-  left: 20%;
-  transform: scale(0.6);
-  opacity: 1;
-  animation: slideUp 4s linear 1, sideSway 2s ease-in-out 4 alternate;
-  animation-fill-mode: forwards;
-  animation-delay: 0.7s;
-}
-
-.a2 {
-  left: 55%;
-  transform: scale(1);
-  opacity: 1;
-  animation: slideUp 5s linear 1, sideSway 4s ease-in-out 2 alternate;
-  animation-fill-mode: forwards;
-  animation-delay: 0.7s;
-}
-
-.a3 {
-  left: 10%;
-  transform: scale(0.8);
-  opacity: 1;
-  animation: slideUp 7s linear 1, sideSway 2s ease-in-out 6 alternate;
-  animation-fill-mode: forwards;
-  animation-delay: 0.7s;
-}
-
-@keyframes slideUp {
-  0% { top: 0; }
-  100% { top: -600px; }
-}
-
-@keyframes sideSway {
-  0% { margin-left: 0px; }
-  100% { margin-left: 50px; }
-}
-
-.reset {
-  text-align: center;
-}
-
-.reset button {
-  font-weight: 800;
-  background-color: transparent;
-  border: solid 2px #ff5757;
-  border-radius: 4px;
-  color: #ff5757;
-  font-size: 14px;
-  text-transform: uppercase;
-  margin: 5px;
-  padding: 10px;
-  min-width: 120px;
-  cursor: pointer;
-}
-
-.reset button:hover {
-  background-color: #fc9d9d;
-  color: #a10000;
-}
-
-.scroll-hint {
-  margin-top: 30px;
-  font-size: 1.2rem;
-  color: #888;
-  animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
-}
-
+/* Navigation container */
 .nav-section {
-  background: #fff0f3;
-  padding: 60px 20px;
-  text-align: center;
+  background: transparent; /* Match page */
+  padding: 10px; /* Inner spacing */
+  text-align: center; /* Center heading */
+  margin-top: 0; /* No extra gap */
 }
 
+/* Navigation heading style */
 .nav-section h2 {
-  font-size: 2rem;
-  margin-bottom: 30px;
+  font-size: 1.8rem; /* Slightly smaller text */
+  margin-bottom: 30px; /* Tighter spacing */
 }
 
+/* Navigation button container */
 .nav-buttons {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  list-style: none; /* No bullets */
+  padding: 0; /* No extra spacing */
+  display: flex; /* Flex layout */
+  flex-wrap: wrap; /* Wrap on small screens */
+  gap: 14px; /* Slightly less spacing */
+  justify-content: center; /* Centered row */
 }
 
+/* Button styles */
 .nav-buttons li a {
-  display: inline-block;
-  padding: 15px 25px;
-  border-radius: 12px;
-  background: #ffb6b9;
-  color: white;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: background 0.3s ease;
+  display: inline-block; /* Button box */
+  padding: 12px 20px; /* Smaller padding */
+  border-radius: 12px; /* Rounded corners */
+  background: #006d2c; /* Button green */
+  color: white; /* White text */
+  text-decoration: none; /* No underline */
+  font-size: 0.95rem; /* Slightly smaller */
+  transition: background 0.3s ease; /* Smooth hover */
 }
 
+/* Button hover style */
 .nav-buttons li a:hover {
-  background: #ff9299;
+  background: #005022; /* Darker on hover */
 }
 
+/* Mobile styles */
 @media (max-width: 600px) {
   .letter-content {
-    font-size: 14px;
+    font-size: 14px; /* Smaller text */
   }
 
   .nav-buttons li a {
-    padding: 12px 18px;
-    font-size: 0.9rem;
+    padding: 10px 16px; /* Smaller padding */
+    font-size: 0.85rem; /* Smaller text */
   }
+}
+
+/* Hides scroll hint text */
+.scroll-hint {
+  display: none;
+}
+
+/* Hides reset buttons */
+.reset {
+  display: none;
+}
+
+/* Decorative leaf images */
+body::before, body::after {
+  content: ""; /* Required for pseudo elements */
+  position: absolute; /* Float on page */
+  background-image: url('../assets/leaf.png'); /* Leaf image */
+  background-size: contain; /* Scale image */
+  background-repeat: no-repeat; /* No tiling */
+  opacity: 0.15; /* Subtle look */
+  width: 180px; /* Slightly smaller */
+  height: 180px; /* Slightly smaller */
+  z-index: 0; /* Behind all */
+}
+
+/* Top left leaf */
+body::before {
+  top: 10px;
+  left: 10px;
+}
+
+/* Bottom right leaf */
+body::after {
+  bottom: 10px;
+  right: 10px;
 }
